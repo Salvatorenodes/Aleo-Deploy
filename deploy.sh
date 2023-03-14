@@ -21,7 +21,7 @@ sleep 1
 cd $PATHTOAPP && cd ..
 sleep 1
 read -p "Enter your private key: " PRIV
-PRIVATEKEY="PRIV"
+PRIVATEKEY="$PRIV"
 sleep 1
 RECORD="$(cat)"
 snarkos developer deploy "${APPNAME}.aleo" --private-key "${PRIVATEKEY}" --query "https://vm.aleo.org/api" --path "./${APPNAME}/build/" --broadcast "https://vm.aleo.org/api/testnet3/transaction/broadcast" --fee 600000 --record "${RECORD}"

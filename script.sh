@@ -46,7 +46,7 @@ git clone https://github.com/AleoHQ/leo
 sleep 1
 cd leo
 cargo install --path .
-sleep1
+sleep 1
 cd "$OLDPWD"
 
 mkdir demo_deploy_Leo_app && cd demo_deploy_Leo_app

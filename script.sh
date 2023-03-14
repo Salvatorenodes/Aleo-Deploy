@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-export RUSTUP_HOME=/workspace/example
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sleep 1
-source "/workspace/.cargo/env"
-
 echo "Powered by"
 curl -s https://raw.githubusercontent.com/Salvatorenodes/logo/main/logo.sh
-
 sleep 2
 
 echo "Updating and installing packages"
@@ -15,11 +9,17 @@ sudo apt update && sudo apt upgrade -y
 
 sleep 1
 
+read -p "Enter your repository name: " EXAMPLE
+export RUSTUP_HOME=/workspace/$EXAMPLE
+
 expect <<EOF
 spawn curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 expect "Proceed with installation" { send -- "\r" }
 expect eof
 EOF
+
+sleep 1
+source "/workspace/.cargo/env"
 
 sleep 1
 

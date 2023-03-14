@@ -10,7 +10,7 @@ sudo apt update && sudo apt upgrade -y
 sleep 1
 
 echo "Install expect"
-sudo apt-get install expect
+sudo apt-get install expect -y
 
 sleep 1
 

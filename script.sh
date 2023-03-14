@@ -9,6 +9,11 @@ sudo apt update && sudo apt upgrade -y
 
 sleep 1
 
+echo "Install expect"
+sudo apt-get install expect
+
+sleep 1
+
 read -p "Enter your repository name: " EXAMPLE
 export RUSTUP_HOME=/workspace/$EXAMPLE
 

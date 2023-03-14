@@ -53,7 +53,7 @@ read -p "Enter your private key: " PRKEY
 PRIVATEKEY="$PRKEY"
 
 read -p "Enter your record value: " RECVAL
-PRIVATEKEY="$RECVAL"
+RECORD="$RECVAL"
 
 sleep 1
 

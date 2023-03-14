@@ -29,4 +29,4 @@ cargo install --path .
 
 sleep 1
 
-cd -
+cd "$OLDPWD"

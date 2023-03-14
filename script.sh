@@ -17,13 +17,10 @@ sleep 1
 read -p "Enter your repository name: " EXAMPLE
 export RUSTUP_HOME=/workspace/$EXAMPLE
 
-expect <<EOF
-spawn curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-expect "Proceed with installation" { send -- "\r" }
-expect eof
-EOF
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 sleep 1
+
 source "/workspace/.cargo/env"
 
 sleep 1

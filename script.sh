@@ -5,8 +5,6 @@ curl -s https://raw.githubusercontent.com/Salvatorenodes/logo/main/logo.sh
 
 sleep 2
 
-#!/bin/bash
-
 echo "Updating and installing packages"
 sudo apt update && sudo apt upgrade -y
 

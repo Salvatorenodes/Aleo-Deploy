@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+mkdir demo_deploy_Leo_app && cd demo_deploy_Leo_app
+sleep1
 read -p "Enter your repository name: " REPO
 cd /workspace/$REPO
 sleep 1
 rm -r demo_deploy_Leo_app
 sleep 1
-
 read -p "Enter your wallet address: " WAL
 WALLETADDRESS="$WAL"
 sleep 1

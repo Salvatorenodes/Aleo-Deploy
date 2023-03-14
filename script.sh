@@ -10,7 +10,7 @@ sleep 2
 echo "Updating and installing packages"
 sudo apt update && sudo apt upgrade -y
 
-wait
+sleep 1
 
 expect <<EOF
 spawn curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -18,7 +18,7 @@ expect "Proceed with installation" { send -- "\r" }
 expect eof
 EOF
 
-wait
+sleep 1
 
 git clone https://github.com/AleoHQ/snarkOS.git --depth 1
 cd snarkOS
@@ -27,6 +27,6 @@ cd snarkOS
 source $HOME/.cargo/env
 cargo install --path .
 
-wait
+sleep 1
 
 cd -

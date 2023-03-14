@@ -5,18 +5,28 @@ curl -s https://raw.githubusercontent.com/Salvatorenodes/logo/main/logo.sh
 
 sleep 2
 
+#!/bin/bash
+
 echo "Updating and installing packages"
 sudo apt update && sudo apt upgrade -y
-sleep 1
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sleep 1
+
+wait
+
+expect <<EOF
+spawn curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+expect "Proceed with installation" { send -- "\r" }
+expect eof
+EOF
+
+wait
+
 git clone https://github.com/AleoHQ/snarkOS.git --depth 1
 cd snarkOS
-sleep 1
+
 ./build_ubuntu.sh
-sleep 1
 source $HOME/.cargo/env
-sleep 1
 cargo install --path .
-sleep 1
+
+wait
+
 cd -

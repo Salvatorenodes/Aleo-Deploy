@@ -25,14 +25,21 @@ echo "Create snarkOS"
 git clone https://github.com/AleoHQ/snarkOS.git --depth 1
 sleep 1
 sudo chown -R gitpod ./snarkOS
+sleep 1
 cd snarkOS
 
 sudo ./build_ubuntu.sh
-source $HOME/.cargo/env
-cargo install --path .
-
 sleep 1
-
+source $HOME/.cargo/env
+sleep 1
+cd "$OLDPWD"
+sleep 1
+sudo chown -R gitpod ./snarkOS
+sleep 1
+cd snarkOS
+sleep 1
+cargo install --path .
+sleep 1
 cd "$OLDPWD"
 
 git clone https://github.com/AleoHQ/leo
@@ -44,8 +51,8 @@ cd "$OLDPWD"
 
 mkdir demo_deploy_Leo_app && cd demo_deploy_Leo_app
 
-echo "Enter your wallet address"
-WALLETADDRESS="$(cat)"
+read -p "Enter your wallet address: " WALL
+WALLETADDRESS="$WALL"
 
 APPNAME=helloworld_"${WALLETADDRESS:4:6}"
 leo new "${APPNAME}"
@@ -53,7 +60,8 @@ cd "${APPNAME}" && leo run && cd -
 PATHTOAPP=$(realpath -q $APPNAME)
 cd $PATHTOAPP && cd ..
 
-PRIVATEKEY="$(cat)"
+read -p "Enter your private key: " PRKEY
+PRIVATEKEY="$PRKEY"
 
 RECORD="$(cat)"
 

@@ -21,6 +21,8 @@ source "/workspace/.cargo/env"
 sleep 1
 
 git clone https://github.com/AleoHQ/snarkOS.git --depth 1
+sleep 1
+sudo chown -R gitpod ./snarkOS
 cd snarkOS
 
 sudo ./build_ubuntu.sh
@@ -37,24 +39,3 @@ cd leo
 cargo install --path .
 sleep1
 cd "$OLDPWD"
-mkdir demo_deploy_Leo_app && cd demo_deploy_Leo_app
-
-read -p "Enter your wallet address: " VALUE
-WALLETADDRESS="$VALUE"
-
-APPNAME=helloworld_"${WALLETADDRESS:4:6}"
-sleep 1
-leo new "${APPNAME}"
-cd "${APPNAME}" && leo run && cd -
-PATHTOAPP=$(realpath -q $APPNAME)
-cd $PATHTOAPP && cd ..
-
-read -p "Enter your private key: " PRKEY
-PRIVATEKEY="$PRKEY"
-
-read -p "Enter your record value: " RECVAL
-RECORD="$RECVAL"
-
-sleep 1
-
-snarkos developer deploy "${APPNAME}.aleo" --private-key "${PRIVATEKEY}" --query "https://vm.aleo.org/api" --path "./${APPNAME}/build/" --broadcast "https://vm.aleo.org/api/testnet3/transaction/broadcast" --fee 600000 --record "${RECORD}"

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+export RUSTUP_HOME=/workspace/example
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sleep 1
+source "/workspace/.cargo/env"
+
 echo "Powered by"
 curl -s https://raw.githubusercontent.com/Salvatorenodes/logo/main/logo.sh
 
@@ -38,7 +43,7 @@ cd "$OLDPWD"
 mkdir demo_deploy_Leo_app && cd demo_deploy_Leo_app
 
 read -p "Enter your wallet address: " VALUE
-echo "WALLETADDRESS="$VALUE""
+WALLETADDRESS="$VALUE"
 
 APPNAME=helloworld_"${WALLETADDRESS:4:6}"
 sleep 1
@@ -48,10 +53,10 @@ PATHTOAPP=$(realpath -q $APPNAME)
 cd $PATHTOAPP && cd ..
 
 read -p "Enter your private key: " PRKEY
-echo "PRIVATEKEY="$PRKEY""
+PRIVATEKEY="$PRKEY"
 
 read -p "Enter your record value: " RECVAL
-echo "PRIVATEKEY="$RECVAL""
+PRIVATEKEY="$RECVAL"
 
 sleep 1
 
